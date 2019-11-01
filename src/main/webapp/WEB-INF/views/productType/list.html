@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/productType/layout::head">
+    <title>Provinces</title>
+</head>
+<body>
+<a href="/create-productType">Create new productType</a>
+<h1>ProductType </h1>
+<div id="form">
+<table id="customers">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="productType : ${productTypes}">
+        <tr>
+            <td><a th:href="@{/view-productTypes/__${productType.id}__}" th:text="${productType.name}"></a></td>
+            <td><a th:href="@{/edit-productTypes/__${productType.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-productTypes/__${productType.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</div>
+<footer th:replace="/productType/playout :: footer"></footer>
+</body>
+</html>

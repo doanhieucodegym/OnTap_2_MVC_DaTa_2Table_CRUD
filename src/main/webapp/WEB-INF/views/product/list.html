@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/product/layout:: head">
+<title> HangHoa</title>
+</head>
+<body>
+
+<a href="/create-product">Create new Product</a>
+<h1>Product</h1>
+<form id=" search">
+    Search by ProductType:
+    <input name="name" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<div id="form">
+    <table id="customers">
+        <tr>
+            <th>Tên Hàng</th>
+            <th>Loại Hàng</th>
+            <th>Ngày tạo</th>
+            <th>Số Lượng</th>
+            <th>Giá</th>
+            <th>Mô Tả</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <th:block th:each="product:${products}">
+            <tr>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.productType.name}"></td>
+                <td th:text="${product.dateCreate}"></td>
+                <td th:text="${product.amount}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.description}"></td>
+                <td><a th:href="@{/edit-product/__${product.id}__ }">Edit</a></td>
+                <td><a th:href="@{/delete-product/__${product.id}__ }">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+
+</div>
+
+<footer th:replace="/product/layout :: footer"></footer>
+</body>
+</html>
